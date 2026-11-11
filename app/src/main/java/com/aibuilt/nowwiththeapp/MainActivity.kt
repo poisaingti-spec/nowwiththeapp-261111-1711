@@ -138,7 +138,6 @@ fun CalculatorApp() {
             .padding(16.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
-        // Display
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -162,7 +161,6 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Row 1: C, ÷, ×, -
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -175,7 +173,6 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Row 2: 7, 8, 9, +
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -188,7 +185,6 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Row 3: 4, 5, 6, =
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -201,7 +197,6 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Row 4: 1, 2, 3
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -214,7 +209,6 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Row 5: 0, .
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -235,7 +229,8 @@ fun CalculatorButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.weight(flexWeight),
+        modifier = Modifier
+            .weight(flexWeight),
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(12.dp),
         contentPadding = PaddingValues(0.dp)
