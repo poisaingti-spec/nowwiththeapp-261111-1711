@@ -167,10 +167,10 @@ fun CalculatorApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("C", onClick = { onClearClick() }, color = MaterialTheme.colorScheme.error, weight = 1f)
-            CalculatorButton("÷", onClick = { onOperationClick('÷') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
-            CalculatorButton("×", onClick = { onOperationClick('×') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
-            CalculatorButton("-", onClick = { onOperationClick('-') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
+            CalculatorButton("C", onClick = { onClearClick() }, color = MaterialTheme.colorScheme.error, flexWeight = 1f)
+            CalculatorButton("÷", onClick = { onOperationClick('÷') }, color = MaterialTheme.colorScheme.primary, flexWeight = 1f)
+            CalculatorButton("×", onClick = { onOperationClick('×') }, color = MaterialTheme.colorScheme.primary, flexWeight = 1f)
+            CalculatorButton("-", onClick = { onOperationClick('-') }, color = MaterialTheme.colorScheme.primary, flexWeight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -180,10 +180,10 @@ fun CalculatorApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("7", onClick = { onNumberClick("7") }, weight = 1f)
-            CalculatorButton("8", onClick = { onNumberClick("8") }, weight = 1f)
-            CalculatorButton("9", onClick = { onNumberClick("9") }, weight = 1f)
-            CalculatorButton("+", onClick = { onOperationClick('+') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
+            CalculatorButton("7", onClick = { onNumberClick("7") }, flexWeight = 1f)
+            CalculatorButton("8", onClick = { onNumberClick("8") }, flexWeight = 1f)
+            CalculatorButton("9", onClick = { onNumberClick("9") }, flexWeight = 1f)
+            CalculatorButton("+", onClick = { onOperationClick('+') }, color = MaterialTheme.colorScheme.primary, flexWeight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -193,10 +193,10 @@ fun CalculatorApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("4", onClick = { onNumberClick("4") }, weight = 1f)
-            CalculatorButton("5", onClick = { onNumberClick("5") }, weight = 1f)
-            CalculatorButton("6", onClick = { onNumberClick("6") }, weight = 1f)
-            CalculatorButton("=", onClick = { onEqualsClick() }, color = MaterialTheme.colorScheme.tertiary, weight = 1f)
+            CalculatorButton("4", onClick = { onNumberClick("4") }, flexWeight = 1f)
+            CalculatorButton("5", onClick = { onNumberClick("5") }, flexWeight = 1f)
+            CalculatorButton("6", onClick = { onNumberClick("6") }, flexWeight = 1f)
+            CalculatorButton("=", onClick = { onEqualsClick() }, color = MaterialTheme.colorScheme.tertiary, flexWeight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -206,9 +206,9 @@ fun CalculatorApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("1", onClick = { onNumberClick("1") }, weight = 1f)
-            CalculatorButton("2", onClick = { onNumberClick("2") }, weight = 1f)
-            CalculatorButton("3", onClick = { onNumberClick("3") }, weight = 1f)
+            CalculatorButton("1", onClick = { onNumberClick("1") }, flexWeight = 1f)
+            CalculatorButton("2", onClick = { onNumberClick("2") }, flexWeight = 1f)
+            CalculatorButton("3", onClick = { onNumberClick("3") }, flexWeight = 1f)
             Spacer(modifier = Modifier.width(8.dp))
         }
 
@@ -219,8 +219,8 @@ fun CalculatorApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("0", onClick = { onNumberClick("0") }, weight = 2f)
-            CalculatorButton(".", onClick = { onDecimalClick() }, weight = 1f)
+            CalculatorButton("0", onClick = { onNumberClick("0") }, flexWeight = 2f)
+            CalculatorButton(".", onClick = { onDecimalClick() }, flexWeight = 1f)
             Spacer(modifier = Modifier.width(8.dp))
         }
     }
@@ -231,11 +231,11 @@ fun CalculatorButton(
     text: String,
     onClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.surfaceVariant,
-    weight: Float = 1f
+    flexWeight: Float = 1f
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.weight(weight),
+        modifier = Modifier.weight(flexWeight),
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(12.dp),
         contentPadding = PaddingValues(0.dp)
