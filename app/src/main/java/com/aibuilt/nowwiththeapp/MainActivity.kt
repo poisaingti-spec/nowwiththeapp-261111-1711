@@ -48,6 +48,16 @@ fun CalculatorApp() {
     var operation by remember { mutableStateOf<Char?>(null) }
     var waitingForSecondOperand by remember { mutableStateOf(false) }
 
+    fun calculate(first: Double, second: Double, op: Char): Double {
+        return when (op) {
+            '+' -> first + second
+            '-' -> first - second
+            '×' -> first * second
+            '÷' -> if (second != 0.0) first / second else 0.0
+            else -> second
+        }
+    }
+
     fun onNumberClick(number: String) {
         if (waitingForSecondOperand) {
             display = number
@@ -99,16 +109,6 @@ fun CalculatorApp() {
         firstOperand = null
         operation = null
         waitingForSecondOperand = false
-    }
-
-    fun calculate(first: Double, second: Double, op: Char): Double {
-        return when (op) {
-            '+' -> first + second
-            '-' -> first - second
-            '×' -> first * second
-            '÷' -> if (second != 0.0) first / second else 0.0
-            else -> second
-        }
     }
 
     Column(
