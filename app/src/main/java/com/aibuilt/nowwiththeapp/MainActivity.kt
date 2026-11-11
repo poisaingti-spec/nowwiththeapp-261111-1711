@@ -4,10 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -141,60 +161,66 @@ fun CalculatorApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Buttons
+        // Row 1: C, ÷, ×, -
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("C", onClick = { onClearClick() }, color = MaterialTheme.colorScheme.error)
-            CalculatorButton("÷", onClick = { onOperationClick('÷') }, color = MaterialTheme.colorScheme.primary)
-            CalculatorButton("×", onClick = { onOperationClick('×') }, color = MaterialTheme.colorScheme.primary)
-            CalculatorButton("-", onClick = { onOperationClick('-') }, color = MaterialTheme.colorScheme.primary)
+            CalculatorButton("C", onClick = { onClearClick() }, color = MaterialTheme.colorScheme.error, weight = 1f)
+            CalculatorButton("÷", onClick = { onOperationClick('÷') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
+            CalculatorButton("×", onClick = { onOperationClick('×') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
+            CalculatorButton("-", onClick = { onOperationClick('-') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Row 2: 7, 8, 9, +
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("7", onClick = { onNumberClick("7") })
-            CalculatorButton("8", onClick = { onNumberClick("8") })
-            CalculatorButton("9", onClick = { onNumberClick("9") })
-            CalculatorButton("+", onClick = { onOperationClick('+') }, color = MaterialTheme.colorScheme.primary, rowspan = 2)
+            CalculatorButton("7", onClick = { onNumberClick("7") }, weight = 1f)
+            CalculatorButton("8", onClick = { onNumberClick("8") }, weight = 1f)
+            CalculatorButton("9", onClick = { onNumberClick("9") }, weight = 1f)
+            CalculatorButton("+", onClick = { onOperationClick('+') }, color = MaterialTheme.colorScheme.primary, weight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Row 3: 4, 5, 6, =
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("4", onClick = { onNumberClick("4") })
-            CalculatorButton("5", onClick = { onNumberClick("5") })
-            CalculatorButton("6", onClick = { onNumberClick("6") })
+            CalculatorButton("4", onClick = { onNumberClick("4") }, weight = 1f)
+            CalculatorButton("5", onClick = { onNumberClick("5") }, weight = 1f)
+            CalculatorButton("6", onClick = { onNumberClick("6") }, weight = 1f)
+            CalculatorButton("=", onClick = { onEqualsClick() }, color = MaterialTheme.colorScheme.tertiary, weight = 1f)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Row 4: 1, 2, 3
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("1", onClick = { onNumberClick("1") })
-            CalculatorButton("2", onClick = { onNumberClick("2") })
-            CalculatorButton("3", onClick = { onNumberClick("3") })
-            CalculatorButton("=", onClick = { onEqualsClick() }, color = MaterialTheme.colorScheme.tertiary, rowspan = 2)
+            CalculatorButton("1", onClick = { onNumberClick("1") }, weight = 1f)
+            CalculatorButton("2", onClick = { onNumberClick("2") }, weight = 1f)
+            CalculatorButton("3", onClick = { onNumberClick("3") }, weight = 1f)
+            Spacer(modifier = Modifier.width(8.dp))
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Row 5: 0, .
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CalculatorButton("0", onClick = { onNumberClick("0") }, colspan = 2)
-            CalculatorButton(".", onClick = { onDecimalClick() })
+            CalculatorButton("0", onClick = { onNumberClick("0") }, weight = 2f)
+            CalculatorButton(".", onClick = { onDecimalClick() }, weight = 1f)
+            Spacer(modifier = Modifier.width(8.dp))
         }
     }
 }
@@ -204,14 +230,11 @@ fun CalculatorButton(
     text: String,
     onClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.surfaceVariant,
-    colspan: Int = 1,
-    rowspan: Int = 1
+    weight: Float = 1f
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier
-            .weight(1f * colspan)
-            .height(70.dp * rowspan),
+        modifier = Modifier.weight(weight),
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(12.dp),
         contentPadding = PaddingValues(0.dp)
