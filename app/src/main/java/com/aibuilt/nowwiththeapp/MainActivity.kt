@@ -227,10 +227,11 @@ fun CalculatorButton(
     color: Color = MaterialTheme.colorScheme.surfaceVariant,
     flexWeight: Float = 1f
 ) {
+    val buttonColor = if (color == MaterialTheme.colorScheme.error) Color.White else MaterialTheme.colorScheme.onSurface
+    
     Button(
         onClick = onClick,
-        modifier = Modifier
-            .weight(flexWeight),
+        modifier = Modifier.weight(flexWeight),
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(12.dp),
         contentPadding = PaddingValues(0.dp)
@@ -239,7 +240,7 @@ fun CalculatorButton(
             text = text,
             fontSize = 24.sp,
             fontWeight = FontWeight.Medium,
-            color = if (color == MaterialTheme.colorScheme.error) Color.White else MaterialTheme.colorScheme.onSurface
+            color = buttonColor
         )
     }
 }
